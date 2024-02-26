@@ -2,10 +2,31 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    height: auto;
+    /*background: linear-gradient(to top left, #141414 20%, #3da7a8 160%);*/
+    /*background: linear-gradient(to top left, #141414 20%, #8c3547 160%);*/
+    /*background: linear-gradient(to top left, #141414 20%, #80656a 160%);*/
+    background-color: #141414;
 }
 
 main {
-    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.header2 {
+    padding-top: 0px;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    height: 70px;
 }
 
 .sidebar {
@@ -44,11 +65,18 @@ main {
     .top-row ::deep a, .top-row ::deep .btn-link {
         margin-left: 0;
     }
+    /*.header {
+        width: 300px;
+    }*/
 }
 
 @media (min-width: 641px) {
+    /*.header {
+        width: 83.3333%;
+    }*/
+
     .page {
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .sidebar {
@@ -75,6 +103,12 @@ main {
         padding-right: 1.5rem !important;
     }
 }
+
+/*@media (min-width: 1400px) {
+    main {
+        width: 1300px;
+    }
+}*/
 
 #blazor-error-ui {
     background: lightyellow;

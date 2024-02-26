@@ -1,7 +1,95 @@
 ﻿@page "/"
+@using RateAndReview.Components.UI
+@using RateAndReview.Utilities
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="pageContainer">
+    <div class="inBetween1">
+    </div>
 
-Welcome to your new app.
+    <div class="initShowsDisplay">
+        <div class="initContainer">
+            @foreach (var show in Constants.Shows)
+            {
+                <div class="initShowContainer">
+                    <img src="@show.Image" alt="@show.Name image" class="initShowImage" />
+                    <div class="initShowName">
+                        <p>@show.Name </p>
+                    </div>
+                </div>
+            } 
+
+            @foreach (var show in Constants.Shows)
+            {
+                <div class="initShowContainer">
+                    <img src="@show.Image" alt="@show.Name image" class="initShowImage" />
+                    <div class="initShowName">
+                        <p>@show.Name </p>
+                    </div>
+                </div>
+            }
+
+            @foreach (var show in Constants.Shows)
+            {
+                <div class="initShowContainer">
+                    <img src="@show.Image" alt="@show.Name image" class="initShowImage" />
+                    <div class="initShowName">
+                        <p>@show.Name </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
+    @* <div class="test1">
+        <img src="@Constants.Shows[0].Image" alt="@Constants.Shows[0].Name image" class="initShowImage" />
+    </div> *@
+
+    <div class="inBetween1">
+    </div>
+    <div class="streamingServicesTitle">
+        Pick a Streaming Service
+    </div>
+
+    <div class="streamingServices">
+        <StreamingButton StreamPlatform="Netflix"/>
+        <StreamingButton StreamPlatform="DisneyPlus" />
+        <StreamingButton StreamPlatform="HboMax" />
+        <StreamingButton StreamPlatform="Prime" />
+        <StreamingButton StreamPlatform="AppleTV" />
+    </div>
+
+    <div class="inBetween1">
+    </div>
+
+    <ShowCategory CategoryTitle="Netflix Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="1"/>
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Disney+ Most Popular Shows" ShowsToDisplay=Constants.DisneyTopShows SliderID="2" />
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Max Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="3"/>
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Prime Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="4" />
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Apple TV + Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="5" />
+
+    <div class="inBetween2">
+    </div>
+
+</div>
+
+@code {
+    
+}

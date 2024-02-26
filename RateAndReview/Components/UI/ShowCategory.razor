@@ -1,0 +1,156 @@
+﻿@using RateAndReview.Utilities
+
+<h2 class="categoryTitle">@CategoryTitle</h2>
+@if (!string.IsNullOrEmpty(SliderID))
+{
+    <div class="parent" id="@SliderID">
+        <div class="horizontal-slider">
+            <div class="slider-content">
+                @foreach (var show in ShowsToDisplay)
+                {
+                    <div class="slider-item">
+                        <div class="sliderImageContainer">
+                            <img src="@show.Image" alt="@show.Name image" />
+                        </div>
+                        <p style="color: white;">@show.Name</p>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="sliderButtons">
+            <button class="slider-button left-button" onclick="moveSlider(-1000, '@SliderID')">&#10094;</button>
+            <button class="slider-button right-button" onclick="moveSlider(1000, '@SliderID')">&#10095;</button>
+        </div>
+    </div>
+    
+}
+
+@code {
+    [Parameter]
+    public string CategoryTitle { get; set; }
+
+    [Parameter]
+    public List<ShowInfo> ShowsToDisplay { get; set; }
+
+    [Parameter]
+    public string SliderID { get; set; }
+
+}
+
+<script>
+    function moveSlider(distance, sliderId) {
+        const parentDiv = document.getElementById(sliderId);
+        const sliderContent = parentDiv.querySelector('.horizontal-slider');
+        const currentScrollLeft = sliderContent.scrollLeft;
+        const newScrollLeft = currentScrollLeft + distance;
+        sliderContent.scrollTo({
+            left: newScrollLeft,
+            behavior: 'smooth'
+        });
+        // Update button visibility
+        updateButtonVisibility(newScrollLeft, sliderId);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const sliders = document.querySelectorAll('.parent');
+        sliders.forEach(function (slider) {
+            const sliderId = slider.id;
+            updateButtonVisibility(slider.scrollLeft, sliderId);
+        });
+    });
+
+    function updateButtonVisibility(scrollLeft, sliderId) {
+        // console.log("VISIBILITY: ", scrollLeft, " SliderID: ", sliderId);
+        const parentDiv = document.getElementById(sliderId);
+        const sliderContent = parentDiv.querySelector('.horizontal-slider');
+        const maxScrollLeft = sliderContent.scrollWidth - sliderContent.clientWidth;
+
+        // Query buttons using the parent div
+        // const leftButton = sliderContent.closest('.parent').querySelector('.slider-button.left-button');
+        // const rightButton = sliderContent.closest('.parent').querySelector('.slider-button.right-button');
+        const leftButton = parentDiv.querySelector('.slider-button.left-button');
+        const rightButton = parentDiv.querySelector('.slider-button.right-button');
+
+        // Hide left button if at the beginning
+        leftButton.style.display = scrollLeft <= 0 ? 'none' : 'inline-block';
+
+        // Hide right button if at the end
+        rightButton.style.display = scrollLeft >= maxScrollLeft ? 'none' : 'inline-block';
+    }
+</script>
+
+@* <script>
+    function moveSlider(distance, sliderId) {
+        const parentDiv = document.getElementById(sliderId);
+        const sliderContent = parentDiv.querySelector('.horizontal-slider');
+        const currentScrollLeft = sliderContent.scrollLeft;
+        const newScrollLeft = currentScrollLeft + distance;
+        sliderContent.scrollTo({
+            left: newScrollLeft,
+            behavior: 'smooth'
+        });
+        // Update button visibility
+        updateButtonVisibility(newScrollLeft, sliderId);
+    }
+
+    function updateButtonVisibility(scrollLeft, sliderId) {
+        console.log("VISIBILITY: ", scrollLeft, " SliderID: ", sliderId);
+        const parentDiv = document.getElementById(sliderId);
+        const sliderContent = parentDiv.querySelector('.horizontal-slider');
+        const maxScrollLeft = sliderContent.scrollWidth - sliderContent.clientWidth;
+
+        // Query buttons using the parent div
+        const leftButton = parentDiv.querySelector('.slider-button.left-button');
+        const rightButton = parentDiv.querySelector('.slider-button.right-button');
+
+        // Hide left button if at the beginning
+        leftButton.style.display = scrollLeft <= 0 ? 'none' : 'inline-block';
+
+        // Hide right button if at the end
+        rightButton.style.display = scrollLeft >= 2900 ? 'none' : 'inline-block';
+    }
+
+    window.onload = function () {
+        const sliderId = '@SliderID';
+        if (sliderId) {
+            const parentDiv = document.getElementById(sliderId);
+            const sliderContent = parentDiv.querySelector('.horizontal-slider');
+            console.log("Onload: ", sliderContent, sliderId)
+            updateButtonVisibility(sliderContent.scrollLeft, sliderId);
+        }
+    };
+</script> *@
+
+@* <script>
+    function moveSlider(distance) {
+        const sliderContent = document.querySelector('.horizontal-slider');
+        const currentScrollLeft = sliderContent.scrollLeft;
+        const newScrollLeft = currentScrollLeft + distance;
+        sliderContent.scrollTo({
+            left: newScrollLeft,
+            behavior: 'smooth' 
+        });
+        // Update button visibility
+        updateButtonVisibility(newScrollLeft);
+    }
+
+    function updateButtonVisibility(scrollLeft) {
+        console.log("VISIBILITY: ", scrollLeft);
+        const sliderContent = document.querySelector('.horizontal-slider');
+        const maxScrollLeft = sliderContent.scrollWidth - sliderContent.clientWidth;
+        const leftButton = document.querySelector('.slider-button.left-button');
+        const rightButton = document.querySelector('.slider-button.right-button');
+
+        // Hide left button if at the beginning
+        leftButton.style.display = scrollLeft <= 0 ? 'none' : 'inline-block';
+
+        // Hide right button if at the end
+        rightButton.style.display = scrollLeft >= 3000 ? 'none' : 'inline-block';
+    }
+
+    window.onload = function () {
+        const sliderContent = document.querySelector('.horizontal-slider');
+        updateButtonVisibility(sliderContent.scrollLeft);
+    };
+    
+</script> *@

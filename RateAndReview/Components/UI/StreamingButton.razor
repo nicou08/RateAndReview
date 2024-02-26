@@ -1,0 +1,39 @@
+﻿<div class="buttonContainer">
+    @if (StreamPlatform == "Netflix")
+    {
+        <div>
+            <img src="images/Netflix_Logo_RGB.png" alt="Netflix logo" class="netflixLogo" />
+        </div>
+    }
+    else if (StreamPlatform == "DisneyPlus")
+    {
+        <div class="disneyContainer">
+            <img src="images/DisneyLogo.jpeg" alt="Disney Plus logo" class="disneyLogo" />
+        </div>
+    }
+    else if (StreamPlatform == "HboMax")
+    {
+        <div class="hbomaxContainer">
+            <img src="images/maxLogo.jpeg" alt="Disney Plus logo" class="hbomaxLogo" />
+        </div>
+    }
+    else if (StreamPlatform == "Prime")
+    {
+        <div class="primeContainer">
+            <img src="images/PrimeVideo.svg.png" alt="Disney Plus logo" class="primeLogo" />
+        </div>
+    }
+    else if (StreamPlatform == "AppleTV")
+    {
+        <img src="images/AppleTvPlus_logo.jpg" alt="Disney Plus logo" class="appleLogo" />
+    }
+    else
+    {
+        <p>STREAMING BUTTON</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string StreamPlatform { get; set; } = "";
+}

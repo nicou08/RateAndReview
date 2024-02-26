@@ -2,7 +2,28 @@
 
 @inject NavigationManager NavigationManager
 
-<div class="top-row ps-3 navbar navbar-dark">
+<div class="headerContainer2">
+    <div class="logoContainer">
+        <img src="images/FilmCameraIcon3.jpg" alot="Netflix N Logo" class="logo"/>
+        <div class="title">
+            Rate & Review
+        </div>
+    </div>
+    
+    <div class="infoContainer">
+        <input type="text" placeholder="Search" class="searchBox"/>
+        <div class="infoAccount">
+            <div class="infoAccountIcon">
+                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span>
+            </div>
+            <div class="infoAccountText">
+                Login
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">RateAndReview</a>
     </div>
@@ -11,7 +32,7 @@
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
+    <nav class="">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
@@ -67,7 +88,7 @@
             </NotAuthorized>
         </AuthorizeView>
     </nav>
-</div>
+</div> *@
 
 @code {
     private string? currentUrl;
