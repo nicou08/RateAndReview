@@ -1,0 +1,32 @@
+﻿.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+    height: calc(100vh - 4.4rem);
+}
+
+.loginContainer {
+    display: flex;
+    background-color: azure;
+    overflow: hidden;
+
+}
+
+@media (max-width: 640px) {
+    .pageContainer {
+        width: 90%;
+    }
+}
+
+@media (min-width: 641px) {
+    .pageContainer {
+        width: 92.857%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .pageContainer {
+        width: 1300px;
+    }
+}

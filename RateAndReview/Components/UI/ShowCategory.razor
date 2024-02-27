@@ -1,4 +1,5 @@
 ﻿@using RateAndReview.Utilities
+@inject NavigationManager NavigationManager
 
 <h2 class="categoryTitle">@CategoryTitle</h2>
 @if (!string.IsNullOrEmpty(SliderID))
@@ -8,12 +9,14 @@
             <div class="slider-content">
                 @foreach (var show in ShowsToDisplay)
                 {
-                    <div class="slider-item">
-                        <div class="sliderImageContainer">
-                            <img src="@show.Image" alt="@show.Name image" />
+                    <NavLink href="@("/show/" + @show.Id)">
+                        <div class="slider-item">
+                            <div class="sliderImageContainer">
+                                <img src="@show.Image" alt="@show.Name image" />
+                            </div>
+                            <p style="color: white;">@show.Name</p>
                         </div>
-                        <p style="color: white;">@show.Name</p>
-                    </div>
+                    </NavLink>
                 }
             </div>
         </div>

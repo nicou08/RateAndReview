@@ -1,7 +1,85 @@
-﻿@page "/show/{id}"
+﻿@page "/show/{showId}"
+
+@using Microsoft.AspNetCore.Authorization
+
+@inject NavigationManager NavigationManager
 
 <PageTitle>Greg</PageTitle>
 
-@code {
+<div class="page">
+    <div class="showInfoContainer">
+        <div class="showInfoFirst">
+            <div class="showImageContainer">
+                <img class="showImage" src="https://m.media-amazon.com/images/M/MV5BZGEwYmMwZmMtMTQ3MS00YWNhLWEwMmQtZTU5YTIwZmJjZGQ0XkEyXkFqcGdeQXVyMTI5MzA5MjA1._V1_.jpg"/>
+            </div>
+            <div class="showTitle">
+                The Falcon and the Winter Soldier
+            </div>
+        </div>
+        <div class="showInfoSecond">
+            <AuthorizeView>
+                <Authorized>
+                    <button class="btn btn-primary">Write Review</button>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink class="" href="Account/Login">
+                        <button class="btn btn-secondary">Sign in to review show</button>
+                    </NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
 
+            <div style="height: 40px;"></div>
+            <div class="reviewContainer">
+                <div class="reviewInfo">
+                    <div class="reviewAuthor">
+                        Review by: Gregarious
+                    </div>
+                    <div class="reviewDate">
+                        4/23/2021
+                    </div>
+                </div>
+                <div class="reviewMessage">
+                    Azure Cosmos DB: While you can use some MongoDB features like querying JSON documents through its API, it's not a full-fledged drop-in replacement for MongoDB. You might need to adapt your code and queries if migrating from an existing MongoDB database.
+                </div>
+                <div class="reviewOptions">
+                    <button>Upvote</button>
+                    <button>Downvote</button>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="reviewContainer">
+                <div class="reviewAuthor">
+                    Review by: Gregarious
+                </div>
+                <div class="reviewMessage">
+                    Azure Cosmos DB: While you can use some MongoDB features like querying JSON documents through its API, it's not a full-fledged drop-in replacement for MongoDB. You might need to adapt your code and queries if migrating from an existing MongoDB database.
+                </div>
+                <div class="reviewOptions">
+                    <button>Upvote</button>
+                    <button>Downvote</button>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <div class="reviewContainer">
+                <div class="reviewAuthor">
+                    Review by: Gregarious
+                </div>
+                <div class="reviewMessage">
+                    Azure Cosmos DB: While you can use some MongoDB features like querying JSON documents through its API, it's not a full-fledged drop-in replacement for MongoDB. You might need to adapt your code and queries if migrating from an existing MongoDB database.
+                </div>
+                <div class="reviewOptions">
+                    <button>Upvote</button>
+                    <button>Downvote</button>
+                </div>
+            </div>
+
+            <h1>Hello this is: @showId</h1>
+            
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? showId { get; set; }
 }

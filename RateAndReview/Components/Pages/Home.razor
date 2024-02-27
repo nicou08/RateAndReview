@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using RateAndReview.Components.UI
 @using RateAndReview.Utilities
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
@@ -87,6 +88,10 @@
 
     <div class="inBetween2">
     </div>
+
+    <NavLink class="nav-link" href="auth">
+        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+    </NavLink>
 
 </div>
 
