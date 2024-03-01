@@ -1,0 +1,331 @@
+﻿@page "/show/{showId}"
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@using System.Linq
+@using Newtonsoft.Json.Linq
+@using RateAndReview.Models
+@using RateAndReview.Services
+
+@inject MongoDBService MongoDBService
+@inject RapidApiService RapidApiService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
+
+@rendermode InteractiveServer
+
+<PageTitle>Gregarious</PageTitle>
+
+<div class="page">
+    <div class="showInfoContainer">
+        <div class="showInfoFirst">
+            <div class="showImageContainer">
+                <img class="showImage" src="@ImageURL" />
+            </div>
+            <div class="showTitle">
+                @ShowTitle
+            </div>
+            <div class="showType">
+                <div class="showDes">Type</div>
+                @MediaType
+            </div>
+
+            @* <h2 style="color: white;">Hello s: @showId</h2> *@
+       
+            @if (mediaInfo != null)
+            {
+                var percent5 = (float)mediaInfo.number5Stars / mediaInfo.numberOfReviews * 100;
+                var percent4 = (float)mediaInfo.number4Stars / mediaInfo.numberOfReviews * 100;
+                var percent3 = (float)mediaInfo.number3Stars / mediaInfo.numberOfReviews * 100;
+                var percent2 = (float)mediaInfo.number2Stars / mediaInfo.numberOfReviews * 100;
+                var percent1 = (float)mediaInfo.number1Stars / mediaInfo.numberOfReviews * 100;
+                <div class="showType">
+                    <div class="showDes">Rating</div>
+                    @mediaInfo.rating.ToString("0.0")
+                </div>
+                <div class="rating-graph">
+                    <div class="rating-row">
+                        <div class="rating-star-style">
+                            5
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="rating-bar-container">
+                            <div class="rating-bar" style="width: @percent5.ToString("0.0")%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratingSpace"></div>
+                    <div class="rating-row">
+                        <div class="rating-star-style">
+                            4
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="rating-bar-container">
+                            <div class="rating-bar" style="width: @percent4.ToString("0.0")%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratingSpace"></div>
+                    <div class="rating-row">
+                        <div class="rating-star-style">
+                            3
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="rating-bar-container">
+                            <div class="rating-bar" style="width: @percent3.ToString("0.0")%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratingSpace"></div>
+                    <div class="rating-row">
+                        <div class="rating-star-style">
+                            2
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="rating-bar-container">
+                            <div class="rating-bar" style="width: @percent2.ToString("0.0")%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratingSpace"></div>
+                    <div class="rating-row">
+                        <div class="rating-star-style">
+                            1
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                            </svg>
+                        </div>
+                        <div class="rating-bar-container">
+                            <div class="rating-bar" style="width: @percent1.ToString("0.0")%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratingSpace"></div>
+                </div>
+
+                <div class="showNumReviews">
+                    @mediaInfo.numberOfReviews user reviews
+                </div>
+            }
+        </div>
+        <div class="showInfoSecond">
+            <AuthorizeView>
+                <Authorized>
+                    @if (userEmail != null)
+                    {
+                        <div style="color: white;">
+                              SUER: @userEmail
+                        </div>
+                    }
+                    <button @onclick="WriteReview" class="btn btn-primary">Write Review</button>
+                    <InputText 
+                        @bind-Value="reviewMessage" class="form-control" placeholder="Write a review" />
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink class="" href="Account/Login">
+                        <button class="signInButton">Sign in to review show</button>
+                    </NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
+            <div style="height: 40px;"></div>
+          
+            @if (reviews != null)
+            {
+                Console.WriteLine("Reviews are not null");
+                Console.WriteLine("Reviews Length: ", reviews.Count);
+                if (reviews.Count > 0)
+                {
+                    List<Review> reviewsReversed = reviews;
+                    reviewsReversed.Reverse();
+                    foreach (var review in reviewsReversed)
+                    {
+                        <div class="reviewContainer">
+                            <div class="reviewInfo">
+                                <div class="reviewAuthor">
+                                    REVIEW BY: @review.author
+                                </div>
+                                <div class="reviewDate">
+                                    @review.date
+                                </div>
+                            </div>
+                            <div class="reviewMessage">
+                                @review.review
+                            </div>
+                            @* <div class="reviewOptions">
+                            <button>Upvote</button>
+                            <button>Downvote</button>
+                        </div> *@
+                        </div>
+                        <div class="spaceReviews"></div>
+                    }
+                } else
+                {
+                    <div class="no-reviews-container">
+                        Show has not been reviewed yet
+                    </div>
+                }
+            } 
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? showId { get; set; }
+
+    private string userEmail;
+
+    public string mediaDataJson { get; set; }
+
+    public string ImageURL { get; set; } = "https://m.media-amazon.com/images/M/MV5BN2FiOWU4YzYtMzZiOS00MzcyLTlkOGEtOTgwZmEwMzAxMzA3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg";
+
+    public string ShowTitle { get; set; } = "Succession";
+
+    public string MediaType { get; set; } = "TV Series";
+
+    public Media mediaInfo { get; set; }
+
+    public List<Review> reviews { get; set; }
+
+    public string reviewMessage { get; set; }
+
+    public float userRating { get; set; }
+
+    public float star5Percent = 0.0f;
+    public float star4Percent = 0.0f;
+    public float star3Percent = 0.0f;
+    public float star2Percent = 0.0f;
+    public float star1Percent = 0.0f;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.Identity.IsAuthenticated)
+        {
+            userEmail = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        }
+
+        if (showId != null)
+        {
+            //var movie = await RapidApiService.GetMediaDetails(showId);
+            // Console.WriteLine("GREGARIOUS SHOWWWWWWWWWWW ");
+            // mediaDataJson = await RapidApiService.GetMediaDetails(showId);
+
+            // JObject mediaDataJsonObject = JObject.Parse(mediaDataJson);
+
+            // ImageURL = mediaDataJsonObject["results"]["primaryImage"]["url"].ToString();
+            // MediaType = mediaDataJsonObject["results"]["titleType"]["text"].ToString();
+            // ShowTitle = mediaDataJsonObject["results"]["titleText"]["text"].ToString();
+
+            mediaInfo = await MongoDBService.GetMediaDataAsync(showId);
+
+            if (mediaInfo != null)
+            {
+                GetPercentages();
+            }
+
+
+            reviews = await MongoDBService.GetReviewsByMediaIdAsync(showId);
+        }
+    }
+
+    private async Task WriteReview()
+    {
+        string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
+        userRating = 5.0f;
+        var review = new Review
+        {
+            mediaId = showId,
+            author = userEmail,
+            review = reviewMessage,
+            rating = userRating,
+            date = currentDate,
+            votes = 0
+        };
+
+        await MongoDBService.AddReviewAsync(review);
+
+        if (mediaInfo == null)
+        {
+            if (showId != null)
+            {
+                mediaInfo = new Media
+                {
+                    imdbID = showId,
+                    rating = userRating,
+                    numberOfReviews = 1,
+                    number5Stars = userRating == 5 ? 1 : 0,
+                    number4Stars = userRating == 4 ? 1 : 0,
+                    number3Stars = userRating == 3 ? 1 : 0,
+                    number2Stars = userRating == 2 ? 1 : 0,
+                    number1Stars = userRating == 1 ? 1 : 0,
+                };
+                await MongoDBService.AddMediaAsync(mediaInfo);
+            }
+        } else
+        {
+            var sumOfAllRatings = mediaInfo.rating * mediaInfo.numberOfReviews;
+            sumOfAllRatings += userRating;
+            mediaInfo.rating = sumOfAllRatings / (mediaInfo.numberOfReviews + 1);
+            mediaInfo.numberOfReviews += 1;
+            switch (userRating)
+            {
+                case 5:
+                    mediaInfo.number5Stars += 1;
+                    break;
+                case 4:
+                    mediaInfo.number4Stars += 1;
+                    break;
+                case 3:
+                    mediaInfo.number3Stars += 1;
+                    break;
+                case 2:
+                    mediaInfo.number2Stars += 1;
+                    break;
+                case 1:
+                    mediaInfo.number1Stars += 1;
+                    break;
+            }
+
+            await MongoDBService.UpdateMediaAsync(mediaInfo);
+        }
+
+        reviews = await MongoDBService.GetReviewsByMediaIdAsync(showId);
+
+        mediaInfo = await MongoDBService.GetMediaDataAsync(showId);
+
+        GetPercentages();
+    }
+
+    private double GetStarPercentage(int numberOfStars)
+    {
+        if (mediaInfo != null)
+        {
+            return (double)numberOfStars / mediaInfo.numberOfReviews * 100;
+        }
+        return 0;
+    }
+
+    private void GetPercentages()
+    {
+        Console.WriteLine("This ratingghgg: ", @mediaInfo.rating);
+        Console.WriteLine("This numberOfReviews: ", mediaInfo.numberOfReviews);
+        Console.WriteLine("This number5Star: ", mediaInfo.number5Stars);
+        star5Percent = mediaInfo.number5Stars / mediaInfo.numberOfReviews * 100;
+        star4Percent = mediaInfo.number4Stars / mediaInfo.numberOfReviews * 100;
+        star3Percent = mediaInfo.number3Stars / mediaInfo.numberOfReviews * 100;
+        star2Percent = mediaInfo.number2Stars / mediaInfo.numberOfReviews * 100;
+        star1Percent = mediaInfo.number1Stars / mediaInfo.numberOfReviews * 100;
+    }
+}

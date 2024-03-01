@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RateAndReview.Client.Pages;
 using RateAndReview.Components;
 using RateAndReview.Components.Account;
 using RateAndReview.Data;
+using RateAndReview.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +30,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+var connectionString2 = builder.Configuration.GetSection("MongoDbSettings")["ConnectionString"];
+if (connectionString2 == null)
+{
+    throw new InvalidOperationException("MongoDB connection string not configured correctly.");
+}
+builder.Services.AddScoped<MongoDBContext>(sp => new MongoDBContext(connectionString2, "RateAndReview-db"));
+builder.Services.AddScoped<MongoDBService>();
 
+// Rapid Api Service Because of the Blazor Error
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<RapidApiService>();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()

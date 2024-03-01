@@ -1,14 +1,7 @@
-﻿using MongoDB.Driver;
-
-namespace RateAndReview.Services
+﻿namespace RateAndReview.Services
 {
-    public class Show
-    {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public int Rating { get; set; }
-    }
+    using MongoDB.Driver;
+    using RateAndReview.Models;
     public class MongoDBContext
     {
         private readonly IMongoDatabase _database;
@@ -19,9 +12,14 @@ namespace RateAndReview.Services
             _database = client.GetDatabase(databaseName);
         }
 
-        public IMongoCollection<Show> Shows
+        public IMongoCollection<Media> MediaInfo
         {
-            get { return _database.GetCollection<Show>("shows"); }
+            get { return _database.GetCollection<Media>("media"); }
+        }
+
+        public IMongoCollection<Review> Reviews
+        {
+            get { return _database.GetCollection<Review>("reviews"); }
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿@page "/show/{showId}"
+﻿@* @page "/showID/{showId}"
 
 @using Microsoft.AspNetCore.Authorization
+@using RateAndReview.Client.Models
+@using RateAndReview.Client.Services;
 
+@inject RapidApiService RapidApiService
+@inject HttpClient httpClient
 @inject NavigationManager NavigationManager
 
 <PageTitle>Greg</PageTitle>
@@ -74,6 +78,7 @@
             </div>
 
             <h1>Hello this is: @showId</h1>
+            <h1>This: @Shows</h1>
             
         </div>
     </div>
@@ -82,4 +87,16 @@
 @code {
     [Parameter]
     public string? showId { get; set; }
+
+    private List<Show> Shows;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Shows = await httpClient.GetFromJsonAsync<List<Show>>("api/show");
+        var movie = await RapidApiService.GetMediaDetails(showId);
+        Console.WriteLine(movie);
+    }
+
+
 }
+ *@
