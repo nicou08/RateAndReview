@@ -25,7 +25,8 @@ main {
     padding-top: 0px;
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: #272829;
+    border-bottom: 1px solid #475569;
     height: 70px;
 }
 

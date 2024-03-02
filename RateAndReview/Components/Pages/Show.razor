@@ -31,6 +31,10 @@
                 <div class="showDes">Type</div>
                 @MediaType
             </div>
+            <div class="showType">
+                <div class="showDes">Release Date</div>
+                @ReleaseDate
+            </div>
 
             @* <h2 style="color: white;">Hello s: @showId</h2> *@
        
@@ -120,16 +124,62 @@
         </div>
         <div class="showInfoSecond">
             <AuthorizeView>
-                <Authorized>
-                    @if (userEmail != null)
+                <Authorized Context="authContext">
+                    @* @if (userEmail != null)
                     {
                         <div style="color: white;">
                               SUER: @userEmail
                         </div>
+                    } *@
+                    
+
+                    @if (showReviewInput)
+                    {
+                        @* <div class="writingForm">
+                            <InputText @bind-Value="reviewMessage" class="form-control form-control-color: red" placeholder="Write a review" />
+                            <button @onclick="WriteReview" class="btn btn-primary">Submit</button>
+                        </div> *@
+                        <button @onclick="ToggleReviewInput" class="btn btn-secondary">Cancel</button>
+                        
+                        <div style="height: 20px;"></div>
+
+                        <EditForm Model=@reviewModel OnValidSubmit=@WriteReview>
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="form-group">
+                                <InputTextArea @bind-Value="reviewModel.ReviewMessage" rows="3" style="padding: 10px; border-radius: 10px; width: 100%" class="writingForm" placeholder="Write a review" />
+                                <ValidationMessage For="@(() => reviewModel.ReviewMessage)" />
+                            </div>
+                            <div class="formOptions">
+                                <div>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        var starIndex = i; // Capture the variable to avoid closure issues
+                                        <span @onclick="(() => SetRating(starIndex))">
+                                            @if (userRating >= starIndex)
+                                            {
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 15px;">
+                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                </svg>
+                                            }
+                                            else
+                                            {
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-star" viewBox="0 0 16 16" style="margin-left: 15px;">
+                                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                                                </svg>
+                                            }
+                                        </span>
+                                    }
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </EditForm>
+                    } else
+                    {
+                        <button @onclick="ToggleReviewInput" class="btn btn-primary">Write Review</button>
                     }
-                    <button @onclick="WriteReview" class="btn btn-primary">Write Review</button>
-                    <InputText 
-                        @bind-Value="reviewMessage" class="form-control" placeholder="Write a review" />
+
                 </Authorized>
                 <NotAuthorized>
                     <NavLink class="" href="Account/Login">
@@ -137,29 +187,39 @@
                     </NavLink>
                 </NotAuthorized>
             </AuthorizeView>
+
             <div style="height: 40px;"></div>
-          
+
             @if (reviews != null)
             {
                 Console.WriteLine("Reviews are not null");
                 Console.WriteLine("Reviews Length: ", reviews.Count);
                 if (reviews.Count > 0)
                 {
-                    List<Review> reviewsReversed = reviews;
-                    reviewsReversed.Reverse();
+                    @* List<Review> reviewsReversed = reviews;
+                    reviewsReversed.Reverse(); *@
+                    List<Review> reviewsReversed = SortReviewsByDate();
                     foreach (var review in reviewsReversed)
                     {
-                        <div class="reviewContainer">
+                        <div class="reviewContainer2">
                             <div class="reviewInfo">
                                 <div class="reviewAuthor">
                                     REVIEW BY: @review.author
                                 </div>
                                 <div class="reviewDate">
-                                    @review.date
+                                    @review.date.ToString("MMMM dd, yyyy")
                                 </div>
                             </div>
                             <div class="reviewMessage">
                                 @review.review
+                            </div>
+                            <div class="reviewRatingContainer">
+                                <div class="reviewRating">
+                                    @review.rating / 5
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-left: 10px;">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
                             </div>
                             @* <div class="reviewOptions">
                             <button>Upvote</button>
@@ -193,13 +253,19 @@
 
     public string MediaType { get; set; } = "TV Series";
 
+    public string ReleaseDate { get; set; } = "2018";
+
     public Media mediaInfo { get; set; }
 
     public List<Review> reviews { get; set; }
 
+    public ReviewModel reviewModel = new ReviewModel();
+
+    public bool showReviewInput = false;
+
     public string reviewMessage { get; set; }
 
-    public float userRating { get; set; }
+    public float userRating { get; set; } = 0;
 
     public float star5Percent = 0.0f;
     public float star4Percent = 0.0f;
@@ -230,29 +296,30 @@
 
             mediaInfo = await MongoDBService.GetMediaDataAsync(showId);
 
-            if (mediaInfo != null)
-            {
-                GetPercentages();
-            }
-
-
             reviews = await MongoDBService.GetReviewsByMediaIdAsync(showId);
         }
     }
 
     private async Task WriteReview()
     {
-        string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
-        userRating = 5.0f;
+        if (userRating < 1 || userRating > 5)
+        {
+            return;
+        }
+
+        DateTime currentDate = DateTime.UtcNow;
+
         var review = new Review
         {
             mediaId = showId,
             author = userEmail,
-            review = reviewMessage,
+            review = reviewModel.ReviewMessage,
             rating = userRating,
             date = currentDate,
             votes = 0
         };
+
+        reviews.Add(review);
 
         await MongoDBService.AddReviewAsync(review);
 
@@ -305,27 +372,23 @@
 
         mediaInfo = await MongoDBService.GetMediaDataAsync(showId);
 
-        GetPercentages();
+        ToggleReviewInput();
     }
 
-    private double GetStarPercentage(int numberOfStars)
+    private void ToggleReviewInput()
     {
-        if (mediaInfo != null)
-        {
-            return (double)numberOfStars / mediaInfo.numberOfReviews * 100;
-        }
-        return 0;
+        showReviewInput = !showReviewInput;
+        userRating = 0;
+        reviewModel.ReviewMessage = "";
     }
 
-    private void GetPercentages()
+    private void SetRating(int starIndex)
     {
-        Console.WriteLine("This ratingghgg: ", @mediaInfo.rating);
-        Console.WriteLine("This numberOfReviews: ", mediaInfo.numberOfReviews);
-        Console.WriteLine("This number5Star: ", mediaInfo.number5Stars);
-        star5Percent = mediaInfo.number5Stars / mediaInfo.numberOfReviews * 100;
-        star4Percent = mediaInfo.number4Stars / mediaInfo.numberOfReviews * 100;
-        star3Percent = mediaInfo.number3Stars / mediaInfo.numberOfReviews * 100;
-        star2Percent = mediaInfo.number2Stars / mediaInfo.numberOfReviews * 100;
-        star1Percent = mediaInfo.number1Stars / mediaInfo.numberOfReviews * 100;
+        userRating = starIndex;
+    }
+
+    private List<Review> SortReviewsByDate()
+    {
+        return reviews.OrderByDescending(r => r.date).ToList();
     }
 }
