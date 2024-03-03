@@ -1,16 +1,17 @@
 ﻿.page {
     background-color: #141414;
     padding-top: 40px;
+    width: 92.857%;
 }
 
 .showInfoContainer {
     display: flex;
     width: 100%;
-    background-color: #141414;
 }
 
 .showInfoFirst {
-    flex: 0 0 33%;
+    /*flex: 0 0 33%;*/
+    width: 433.33px;
     padding-top: 100px;
     display: flex;
     flex-direction: column;
@@ -20,8 +21,6 @@
 }
 
 .showInfoSecond {
-    flex: 1;
-    max-width: 67%;
     /*background-color: red;*/
     overflow-x: hidden;
     padding: 10px;
@@ -231,21 +230,32 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-@media (min-width: 641px) {
-    .page {
-        width: 92.857%;
+@media (max-width: 433.33px) {
+    .showInfoFirst {
+        width: 100%;
     }
 }
 
 @media (max-width: 1199px) {
     .showInfoContainer {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .showInfoSecond {
+        width: 100%;;
+        padding-top: 50px;
     }
 }
 
 @media (min-width: 1200px) {
-    .showInfoContainer {
+    .showinfocontainer {
         flex-direction: row;
+    }
+
+    .showInfoSecond {
+        flex: 1;
+        max-width: 67%;
     }
 }
 

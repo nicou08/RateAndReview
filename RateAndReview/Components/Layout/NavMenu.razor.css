@@ -63,7 +63,7 @@
 }
 
 .infoAccountIcon {
-    padding-top:3px;
+    padding-top:0px;
 }
 
 .navbar-toggler {
@@ -217,6 +217,7 @@
     }
     .infoAccountText {
         display: block;
+        font-size: 18px;
     }
 }
 
