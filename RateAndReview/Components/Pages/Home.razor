@@ -1,9 +1,16 @@
 ﻿@page "/"
+
 @using RateAndReview.Components.UI
 @using RateAndReview.Utilities
+@using RateAndReview.Models
+@using RateAndReview.Services
+
+@inject MongoDBService MongoDBService
 @inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
+
+
 
 <div class="pageContainer">
     <div class="inBetween1">
@@ -49,18 +56,102 @@
 
     <div class="inBetween1">
     </div>
-    <div class="streamingServicesTitle">
-        Pick a Streaming Service
+
+    <div class="topRatedContainer">
+        <div class="topShowsContainer">
+            <div class="topRatedTitle">
+                Most Rated Shows
+            </div>
+
+            @if (Most10RatedShows != null)
+            {
+                @foreach (var show in Most10RatedShows)
+                {
+                    <div class="topMediaItem">
+                        <div  class="topMediaItemImageContainer">
+                            <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
+                        </div>
+                        <div class="topMediaIteminfoContainer">
+                            <div class="topMediaItemInfo">
+                                <div class="topMediaItemTitle">
+                                    @show.mediaTitle 
+                                </div>
+                                <div class="topMediaItemDate">
+                                    @show.releaseDate
+                                </div>
+                            </div>
+                            <div class="topMediaItemRating">
+                                <div class="topMediaItemRatingStar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    @show.rating.ToString("0.0")
+                                </div>
+                                <div class="topMediaItemNumRating">
+                                    @show.numberOfReviews user ratings
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            
+         
+        </div>
+        <div class="topMoviesContainer">
+            <div class="topRatedTitle">
+                Most Rated Movies
+            </div>
+
+            @if (Most10RatedShows != null)
+            {
+                @foreach (var show in Most10RatedShows)
+                {
+                    <div class="topMediaItem">
+                        <div class="topMediaItemImageContainer">
+                            <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
+                        </div>
+                        <div class="topMediaIteminfoContainer">
+                            <div class="topMediaItemInfo">
+                                <div class="topMediaItemTitle">
+                                    @show.mediaTitle
+                                </div>
+                                <div class="topMediaItemDate">
+                                    @show.releaseDate
+                                </div>
+                            </div>
+                            <div class="topMediaItemRating">
+                                <div class="topMediaItemRatingStar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                    @show.rating.ToString("0.0")
+                                </div>
+                                <div class="topMediaItemNumRating">
+                                    @show.numberOfReviews user ratings
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
     </div>
 
-    <div class="streamingServices">
+@*     <div class="streamingServicesTitle">
+        Pick a Streaming Service
+    </div> *@
+
+    @* <div class="streamingServices">
         <StreamingButton StreamPlatform="Netflix"/>
         <StreamingButton StreamPlatform="DisneyPlus" />
         <StreamingButton StreamPlatform="HboMax" />
         <StreamingButton StreamPlatform="Prime" />
         <StreamingButton StreamPlatform="AppleTV" />
     </div>
-
+ *@
     <div class="inBetween1">
     </div>
 
@@ -96,5 +187,18 @@
 </div>
 
 @code {
-    
+    public List<Media> Most10RatedShows { get; set; }
+
+    public List<Media> Most10RatedMovies { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Most10RatedShows = await MongoDBService.GetTop5ShowsAsync();
+
+        Most10RatedMovies = await MongoDBService.GetTop10MoviesAsync();
+
+        Console.WriteLine("Most10RatedShows: {0}" + Most10RatedShows.Count);
+
+        Console.WriteLine("Most10RatedMovies: {0}" + Most10RatedMovies.Count);
+    }
 }

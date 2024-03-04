@@ -1,5 +1,6 @@
 ﻿.pageContainer {
     background-color: #141414;
+    overflow: hidden;
 }
 
 .initShowsDisplay {
@@ -53,7 +54,108 @@
     height: 50px;
 }
 
+.topRatedTitle {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+    padding-bottom: 30px;
+    background-color: #141414;
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif*/
+}
+
+.topRatedContainer {
+    display: flex;
+    width: 100%;
+    /*background-color: red;*/
+    height: auto;
+}
+
+.topShowsContainer {
+    width: 50%;
+    background-color: #141414;
+}
+
+.topMoviesContainer {
+    flex: 1;
+}
+
+.topMediaItem {
+    display: flex;
+    height: 130px;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+    .topMediaItem:hover {
+        background-color: #272829;
+    }
+
+.topMediaItemImageContainer {
+    display: flex;
+    justify-content: center;
+    width: 110px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.topMediaItemImage {
+    width: auto;
+    height: 100%;
+}
+
+.topMediaIteminfoContainer {
+    display:flex;
+    justify-content: space-between;
+    flex: 1;
+    padding-left: 20px;
+    padding-right: 60px;
+
+}
+
+.topMediaItemInfo {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.topMediaItemTitle {
+    font-size: 20px;
+    color: white;
+}
+
+.topMediaItemDate {
+    margin-top: 20px;
+    color: #85827b;
+}
+
+.topMediaItemRating {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    color: white;
+}
+
+.topMediaItemRatingStar {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 25px;
+}
+
+.topMediaItemNumRating {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-top: 20px;
+    color: #85827b;
+}
+
+
+
 .streamingServicesTitle {
+    background-color: blue;
     color: white;
     font-size: 27px;
     display: flex;
@@ -95,6 +197,12 @@
 .slider-item img {
     max-width: 100%;
     height: auto;
+}
+
+@media (max0width: 640px) {
+    .pageContainer {
+        width: 100%;
+    }
 }
 
 @media (min-width: 641px) {

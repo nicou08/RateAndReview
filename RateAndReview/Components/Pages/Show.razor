@@ -36,6 +36,28 @@
                 @ReleaseDate
             </div>
 
+            @if (MediaType == "TV Series")
+            {
+                @if (EndDate != null)
+                {
+                    <div class="showType">
+                        <div class="showDes">End Date</div>
+                        @EndDate
+                    </div>
+                    <div class="showType">
+                        <div class="showDes">Status</div>
+                        Finished
+                    </div>
+                }
+                else
+                {
+                    <div class="showType">
+                        <div class="showDes">Status</div>
+                        Ongoing
+                    </div>
+                }
+            }
+
             @* <h2 style="color: white;">Hello s: @showId</h2> *@
        
             @if (mediaInfo != null)
@@ -255,6 +277,8 @@
 
     public string ReleaseDate { get; set; } = "2018";
 
+    public string EndDate { get; set; } = "2023";
+
     public Media mediaInfo { get; set; }
 
     public List<Review> reviews { get; set; }
@@ -330,6 +354,11 @@
                 mediaInfo = new Media
                 {
                     imdbID = showId,
+                    mediaTitle = ShowTitle,
+                    mediaType = MediaType,
+                    mediaPoster = ImageURL,
+                    releaseDate = ReleaseDate,
+                    endDate = EndDate,
                     rating = userRating,
                     numberOfReviews = 1,
                     number5Stars = userRating == 5 ? 1 : 0,

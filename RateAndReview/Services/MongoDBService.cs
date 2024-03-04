@@ -22,6 +22,42 @@
             return await _mediaInfo.Find(show => show.imdbID == imdbId).FirstOrDefaultAsync();
         }
 
+        public async Task<List<Media>> GetTop5ShowsAsync()
+        {
+            var filter = Builders<Media>.Filter.Eq(m => m.mediaType, "TV Series");
+            return await _mediaInfo.Find(filter)
+                                   .Sort(Builders<Media>.Sort.Descending(m => m.numberOfReviews))
+                                   .Limit(5)
+                                   .ToListAsync();
+        }
+
+        public async Task<List<Media>> GetTop10ShowsAsync()
+        {
+            var filter = Builders<Media>.Filter.Eq(m => m.mediaType, "TV Series");
+            return await _mediaInfo.Find(filter)
+                                   .Sort(Builders<Media>.Sort.Descending(m => m.numberOfReviews))
+                                   .Limit(10)
+                                   .ToListAsync();
+        }
+
+        public async Task<List<Media>> GetTop5MoviesAsync()
+        {
+            var filter = Builders<Media>.Filter.Eq(m => m.mediaType, "Movie");
+            return await _mediaInfo.Find(filter)
+                                   .Sort(Builders<Media>.Sort.Descending(m => m.numberOfReviews))
+                                   .Limit(5)
+                                   .ToListAsync();
+        }
+
+        public async Task<List<Media>> GetTop10MoviesAsync()
+        {
+            var filter = Builders<Media>.Filter.Eq(m => m.mediaType, "Movie");
+            return await _mediaInfo.Find(filter)
+                                   .Sort(Builders<Media>.Sort.Descending(m => m.numberOfReviews))
+                                   .Limit(10)
+                                   .ToListAsync();
+        }
+
         public async Task AddMediaAsync(Media media)
         {
             await _mediaInfo.InsertOneAsync(media);

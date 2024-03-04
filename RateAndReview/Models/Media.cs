@@ -6,6 +6,11 @@ namespace RateAndReview.Models
     {
         public ObjectId _id { get; set; }
         public string imdbID { get; set; }
+        public string mediaTitle { get; set; }
+        public string mediaType { get; set; }
+        public string mediaPoster { get; set; }
+        public string releaseDate { get; set; }
+        public string endDate { get; set; }
         public float rating { get; set; }
         public int numberOfReviews { get; set; }
         public int number5Stars { get; set; }
