@@ -3,6 +3,53 @@
     overflow: hidden;
 }
 
+.carouselParentContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.carouselContainer {
+    width: 90%;
+}
+
+.carouselImageCointainer {
+    width: 100%;
+    height: auto;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carouselImage {
+    width: 300px;
+    height: 450px;
+    object-fit: contain;
+}
+
+.carouselInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #272829;
+    color: white;
+}
+
+.carouselInfoName {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.carouselInfoEx {
+    display: flex;
+    color: #85827b;
+    padding-bottom: 40px;
+}
+
 .initShowsDisplay {
     display: flex;
     overflow-x: hidden;
@@ -59,6 +106,7 @@
     justify-content: center;
     color: white;
     font-size: 25px;
+    font-weight: 600;
     padding-bottom: 30px;
     background-color: #141414;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif*/
@@ -66,23 +114,23 @@
 
 .topRatedContainer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    /*background-color: red;*/
     height: auto;
 }
 
 .topShowsContainer {
-    width: 50%;
-    background-color: #141414;
+    width: 100%;
 }
 
 .topMoviesContainer {
-    flex: 1;
+    width: 100%;
 }
 
 .topMediaItem {
     display: flex;
-    height: 130px;
+    height: calc(20vw);
     overflow: hidden;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -95,7 +143,7 @@
 .topMediaItemImageContainer {
     display: flex;
     justify-content: center;
-    width: 110px;
+    width: 15%;
     height: 100%;
     overflow: hidden;
 }
@@ -121,12 +169,11 @@
 }
 
 .topMediaItemTitle {
-    font-size: 20px;
+    font-size: 13px;
     color: white;
 }
 
 .topMediaItemDate {
-    margin-top: 20px;
     color: #85827b;
 }
 
@@ -141,14 +188,13 @@
     display: flex;
     align-items: center;
     justify-content: right;
-    font-size: 25px;
+    font-size: 15px;
 }
 
 .topMediaItemNumRating {
     display: flex;
     align-items: center;
     justify-content: right;
-    margin-top: 20px;
     color: #85827b;
 }
 
@@ -199,15 +245,104 @@
     height: auto;
 }
 
-@media (max0width: 640px) {
+@media (max-width: 640px) {
     .pageContainer {
         width: 100%;
+    }
+    .topMediaItem {
+        padding-left: 9%;
+    }
+
+    .topMediaItemDate {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    .topMediaItemNumRating {
+        font-size: 13px;
+        margin-top: 10px;
     }
 }
 
 @media (min-width: 641px) {
     .pageContainer {
         width: 92.857%;
+    }
+    .topMediaItemImageContainer {
+        width: 110px;
+    }
+
+    .topMediaItem {
+        height: 130px;
+    }
+
+    .topMediaItemTitle {
+        font-size: 20px;
+    }
+    .topMediaItemDate {
+        margin-top: 20px;
+    }
+
+    .topMediaItemRatingStar {
+        font-size: 25px;
+    }
+
+    .topMediaItemNumRating {
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 664px) {
+    .topShowsContainer {
+        width: 600px;
+    }
+
+    .topMoviesContainer {
+        width: 600px;
+    }
+}
+
+@media (max-width: 799px) {
+    .carouselInfo {
+        padding-bottom: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+    }
+}
+
+@media (min-width: 800px) {
+    .carouselImageCointainer {
+        flex-direction: row;
+        height: 500px;
+    }
+
+    .carouselInfo {
+        padding: 30px;
+        width: 600px;
+        height: 450px;
+    }
+
+}
+
+@media (max-width: 1199px) {
+    .topRatedContainer {
+
+    }
+}
+
+@media (min-width: 1200px) {
+    .topRatedContainer {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .topShowsContainer {
+        width: 50%;
+    }
+
+    .topMoviesContainer {
+        flex: 1;
     }
 }
 

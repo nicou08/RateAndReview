@@ -38,7 +38,7 @@
 
             @if (MediaType == "TV Series")
             {
-                @if (EndDate != null)
+                @if (!string.IsNullOrEmpty(EndDate))
                 {
                     <div class="showType">
                         <div class="showDes">End Date</div>
@@ -269,15 +269,15 @@
 
     public string mediaDataJson { get; set; }
 
-    public string ImageURL { get; set; } = "https://m.media-amazon.com/images/M/MV5BN2FiOWU4YzYtMzZiOS00MzcyLTlkOGEtOTgwZmEwMzAxMzA3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg";
+    public string ImageURL { get; set; } = "";
 
-    public string ShowTitle { get; set; } = "Succession";
+    public string ShowTitle { get; set; } = "";
 
-    public string MediaType { get; set; } = "TV Series";
+    public string MediaType { get; set; } = "";
 
-    public string ReleaseDate { get; set; } = "2018";
+    public string ReleaseDate { get; set; } = "";
 
-    public string EndDate { get; set; } = "2023";
+    public string EndDate { get; set; } = null;
 
     public Media mediaInfo { get; set; }
 
@@ -310,13 +310,22 @@
         {
             //var movie = await RapidApiService.GetMediaDetails(showId);
             // Console.WriteLine("GREGARIOUS SHOWWWWWWWWWWW ");
-            // mediaDataJson = await RapidApiService.GetMediaDetails(showId);
+            mediaDataJson = await RapidApiService.GetMediaDetails(showId);
 
-            // JObject mediaDataJsonObject = JObject.Parse(mediaDataJson);
+            JObject mediaDataJsonObject = JObject.Parse(mediaDataJson);
 
-            // ImageURL = mediaDataJsonObject["results"]["primaryImage"]["url"].ToString();
-            // MediaType = mediaDataJsonObject["results"]["titleType"]["text"].ToString();
-            // ShowTitle = mediaDataJsonObject["results"]["titleText"]["text"].ToString();
+            ShowTitle = mediaDataJsonObject["results"]["titleText"]["text"].ToString();
+            if (ShowTitle == "Breaking Bad")
+            {
+                ImageURL = "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg";
+            } else
+            {
+                ImageURL = mediaDataJsonObject["results"]["primaryImage"]["url"].ToString();
+            }
+            MediaType = mediaDataJsonObject["results"]["titleType"]["text"].ToString();
+            ReleaseDate = mediaDataJsonObject["results"]["releaseYear"]["year"].ToString();
+            EndDate = mediaDataJsonObject["results"]["releaseYear"]["endYear"].ToString();
+            Console.WriteLine("What is good EndDate: {0}", EndDate);
 
             mediaInfo = await MongoDBService.GetMediaDataAsync(showId);
 

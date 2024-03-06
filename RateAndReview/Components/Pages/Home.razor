@@ -7,16 +7,74 @@
 
 @inject MongoDBService MongoDBService
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
 
 <PageTitle>Home</PageTitle>
-
-
 
 <div class="pageContainer">
     <div class="inBetween1">
     </div>
 
-    <div class="initShowsDisplay">
+    <div class="carouselParentContainer">
+        <div id="@carouselName" class="carousel slide carouselContainer" data-bs-ride="carousel" data-bs-wrap="true" data-bs-interval="9000" data-bs-pause="false">
+            <div class="carousel-indicators">
+                @for (var i = 0; i < Constants.Shows.Count; i++)
+                {
+                    var activeClass = i == 0 ? "active" : "";
+                    <button type="button" data-bs-target="#@carouselName" data-bs-slide-to="@i" class="@activeClass" aria-current="true" aria-label="Slide @i"></button>
+                }
+            </div>
+            <div class="carousel-inner">
+                @foreach (var show in Constants.Shows)
+                {
+                    var activeClass = show == Constants.Shows.First() ? "active" : "";
+                    <div class="carousel-item @activeClass">
+                        <NavLink class="nav-link" href="@("/show/" + @show.Id)">
+                            <div class="carouselImageCointainer">
+                                <img src="@show.Image" class="carouselImage" alt="@show.Name">
+                                <div class="carouselInfo">
+                                    <div class="carouselInfoName">
+                                        @show.Name
+                                    </div>
+                                    <div class="carouselInfoEx">
+                                        @show.Type
+                                        &nbsp;&nbsp;&nbsp;
+                                        @show.ReleaseDate
+                                        -
+                                        @if (show.EndDate != null)
+                                        {
+                                            @show.EndDate
+                                        } else
+                                        {
+                                            <div>
+                                                &nbsp;&#x2022;
+                                            </div>
+                                        }
+                                    </div>
+                                    <div>
+                                        @show.Description
+                                    </div>
+                                </div>
+                            </div>
+                        </NavLink>
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#@carouselName" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#@carouselName" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="inBetween1">
+    </div>
+
+    @* <div class="initShowsDisplay">
         <div class="initContainer">
             @foreach (var show in Constants.Shows)
             {
@@ -48,7 +106,7 @@
                 </div>
             }
         </div>
-    </div>
+    </div> *@
     
     @* <div class="test1">
         <img src="@Constants.Shows[0].Image" alt="@Constants.Shows[0].Name image" class="initShowImage" />
@@ -78,6 +136,17 @@
                                 </div>
                                 <div class="topMediaItemDate">
                                     @show.releaseDate
+                                    -
+                                    @if (show.endDate != null)
+                                    {
+                                        @show.endDate
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            &nbsp;&#x2022;
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             <div class="topMediaItemRating">
@@ -90,7 +159,6 @@
                                 <div class="topMediaItemNumRating">
                                     @show.numberOfReviews user ratings
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -119,6 +187,17 @@
                                 </div>
                                 <div class="topMediaItemDate">
                                     @show.releaseDate
+                                    -
+                                    @if (show.endDate != null)
+                                    {
+                                        @show.endDate
+                                    }
+                                    else
+                                    {
+                                        <div>
+                                            &nbsp;&#x2022;
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             <div class="topMediaItemRating">
@@ -155,6 +234,9 @@
     <div class="inBetween1">
     </div>
 
+    <div class="inBetween1">
+    </div>
+
     <ShowCategory CategoryTitle="Netflix Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="1"/>
 
     <div class="inBetween2">
@@ -187,6 +269,9 @@
 </div>
 
 @code {
+
+    private string carouselName = "FirstMedia";
+
     public List<Media> Most10RatedShows { get; set; }
 
     public List<Media> Most10RatedMovies { get; set; }
@@ -202,3 +287,14 @@
         Console.WriteLine("Most10RatedMovies: {0}" + Most10RatedMovies.Count);
     }
 }
+
+<script type="text/javascript">
+    function startCarousel(carouselId) {
+        var myCarousel = document.getElementById(carouselId);
+        var carousel = new bootstrap.Carousel(myCarousel);
+        carousel.cycle();  // This will cause the carousel to start immediately
+    }
+
+    var carouselName = "@carouselName";
+    startCarousel(carouselName);
+</script>

@@ -1,0 +1,48 @@
+﻿.pageContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: darkcyan;
+    width: 100%;
+    padding: 30px;
+}
+
+.header1 {
+    color: white;
+}
+
+.resultsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.resultsTitleContainer {
+    display: flex;
+}
+
+.resultsTitleLine{
+    height: auto;
+    width: 3px;
+    background-color: yellow;
+}
+
+.resultsTitle {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.resultsItems {
+
+}
+
+@media (min-width: 1400px) {
+    .pageContainer {
+        width: 1300px;
+        padding-top: 100px;
+    }
+}

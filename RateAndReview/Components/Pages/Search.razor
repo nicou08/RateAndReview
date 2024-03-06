@@ -1,0 +1,38 @@
+﻿@page "/search/{search}"
+
+@using RateAndReview.Models
+@using RateAndReview.Services
+
+@inject RapidApiService RapidApiService
+@inject NavigationManager NavigationManager
+
+<div class="pageContainer">
+
+    <h1 class="header1">Search "@search"</h1>
+
+    <div class="resultsContainer">
+        <div class="resultsTitleContainer">
+            <div class="resultsTitleLine"></div>
+            <div class="resultsTitle">Titles</div>
+        </div>
+        
+        <div class="resultsItems">
+
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? search { get; set; }
+
+    public List<Media> searchResultsAka = new List<Media>();
+
+    public List<Media> searchResultsKey = new List<Media>();
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     searchResultsAka = await RapidApiService.GetSearchByAka(search);
+    // }
+}
+

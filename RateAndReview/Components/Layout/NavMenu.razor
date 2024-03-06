@@ -1,10 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
+@using Newtonsoft.Json.Linq
+@using RateAndReview.Models
+@using RateAndReview.Services
 
+@inject RapidApiService RapidApiService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 @implements IDisposable
+
+@rendermode InteractiveServer
 
 <div class="headerContainer2">
     <NavLink class="nav-link" href="/">
@@ -16,10 +22,70 @@
         </div>
     </NavLink>
     
-    
     <div class="infoContainer">
 
-        <input type="text" placeholder="Search" class="searchBox"/>
+        <div class="searchBox">
+            <InputText type="text" @onkeyup="CheckForEnter" @bind-Value="searchQuery" placeholder="Search" style="width: 100%; padding-left: 20px; padding-right: 20px; padding-top: 8px; padding-bottom: 8px; border-radius: 10px;" />
+            @if (showSearchResults)
+            {
+                <div class="searchResultsContainer">
+
+                    @if (searchResultsList.Count > 0)
+                    {
+                        @foreach (var media in searchResultsList)
+                        {
+                            <NavLink class="nav-link" href="@("/show/" + @media.imdbID)">
+                                <div class="searchResultItem" @onclick="clearSearchResults">
+                                    <div>
+                                        <img src="@media.mediaPoster" alt="@media.mediaTitle" class="searchResultPoster" />
+                                    </div>
+                                    <div class="searchResultItemInfo">
+                                        <div class="searchResultItemTitle">
+                                            @media.mediaTitle
+                                        </div>
+                                        <div class="searchResultItemType">
+                                            @media.mediaType
+                                        </div>
+                                        <div class="searchResultItemDate">
+                                            @media.releaseDate
+                                        </div>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        }
+                    }
+                    else
+                    {
+                        <div class="seachResultNoMatches">
+                            No Results Found
+        
+                        </div>
+                    }
+                    <div class="searchResultButtonContainer">
+                        <button @onclick="clearSearchResults" class="searchResultsClose">Close</button>
+                    </div>
+               
+                </div>
+            }
+        </div>
+
+        @* <div class="searchBox">
+            <div class="searchBoxInner">
+                <InputText type="text" @onkeyup="CheckForEnter" @bind-Value="searchQuery" placeholder="Search" style="width: 100%; padding-left: 20px; padding-right: 20px; padding-top: 8px; padding-bottom: 8px; border-radius: 50px;" />
+                @if (showSearchResults)
+                {
+                    <div class="searchResultsContainer">
+                        Hello search results
+                        <button @onclick="ToggleSearchResults">Close</button>
+                    </div>
+                }
+            </div> 
+        </div> *@
+
+        @* <EditForm FormName="searchForm" Model="@searchModel" OnValidSubmit="@Search">
+            <InputText id="searchBox" class="searchBox" @bind-Value="@searchQuery" placeholder="Search" />
+            <ValidationMessage For="@(() => searchModel.SearchQuery)" /> 
+        </EditForm> *@
 
         <AuthorizeView>
             <Authorized Context="authContext">
@@ -56,7 +122,132 @@
     </div>
 </div>
 
-@* <div class="top-row ps-3 navbar navbar-dark">
+@code {
+    private string? currentUrl;
+
+    public string searchQuery { get; set; } = "";
+
+    public bool showSearchResults { get; set; } = false;
+
+    public List<SearchResult> searchResultsList = new List<SearchResult>();
+
+    public SearchModel searchModel = new SearchModel();
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+
+    public async void CheckForEnter(KeyboardEventArgs e)
+    {
+        //Console.WriteLine("CheckForEnter Triggered");
+        if (e.Key == "Enter")
+        {
+            Console.WriteLine("Enter was pressed");
+            Console.WriteLine("Search Query: " + searchQuery);
+
+            searchResultsList.Clear();
+
+            await Search();
+
+            Console.WriteLine("Search finished");
+            Console.WriteLine(showSearchResults);
+
+            if (showSearchResults == false)
+            {
+                Console.WriteLine("If statement showSearchResults triggered");
+                ToggleSearchResults();
+                Console.WriteLine(showSearchResults);
+            }
+            StateHasChanged();
+        }
+    }
+
+    public void ToggleSearchResults()
+    {
+        showSearchResults = !showSearchResults;
+    }
+
+
+    public void clearSearchResults()
+    {
+        searchResultsList.Clear();
+        searchQuery = "";
+        ToggleSearchResults();
+    }
+
+    private async Task Search()
+    {
+        Console.WriteLine("Search Triggered");
+        Console.WriteLine("Search Query: " + searchQuery);
+
+        if (!String.IsNullOrWhiteSpace(searchQuery))
+        {
+            var searchResults = await RapidApiService.GetSearchByAka(searchQuery);
+
+            //Console.WriteLine("Search Results:");
+            //Console.WriteLine(searchResults);
+
+            JObject searchResultsJson = JObject.Parse(searchResults);
+
+            Console.WriteLine("Search Results JSON:");
+            Console.WriteLine(searchResultsJson);
+
+            if (searchResultsJson["results"] != null)
+            {
+                foreach (var result in searchResultsJson["results"])
+                {
+                    Console.WriteLine("Result");
+                    //Console.WriteLine(result);
+                    Console.WriteLine(result["id"]);
+                    if (result["titleType"]["text"].ToString() == "TV Series")
+                    {
+                        var ImgUrl = "";
+                        if (result["titleText"]["text"].ToString() == "Breaking Bad")
+                        {
+                            ImgUrl = "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg";
+
+                        }
+                        else
+                        {
+                            ImgUrl = result["primaryImage"]["url"].ToString();
+                        }
+                        var newSearchResult = new SearchResult
+                        {
+                            imdbID = result["id"].ToString(),
+                            mediaTitle = result["titleText"]["text"].ToString(),
+                            mediaType = result["titleType"]["text"].ToString(),
+                            mediaPoster = ImgUrl,
+                            releaseDate = result["releaseYear"]["year"].ToString(),
+                            endDate = result["releaseYear"]["endYear"].ToString()
+                        };
+
+                        Console.WriteLine("New search Result:");
+                        Console.WriteLine(newSearchResult.mediaTitle);
+                        Console.WriteLine(newSearchResult.mediaType);
+                        Console.WriteLine(newSearchResult.releaseDate);
+
+                        searchResultsList.Add(newSearchResult);
+                    }
+                }
+            }
+        }
+    }
+}
+
+    @* <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">RateAndReview</a>
     </div>
@@ -122,25 +313,3 @@
         </AuthorizeView>
     </nav>
 </div> *@
-
-@code {
-    private string? currentUrl;
-
-    protected override void OnInitialized()
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        NavigationManager.LocationChanged += OnLocationChanged;
-    }
-
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
-    }
-}
-

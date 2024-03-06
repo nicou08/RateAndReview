@@ -4,22 +4,116 @@
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
+        public string ReleaseDate { get; set; }
+        public string EndDate { get; set; }
         public string Image { get; set; }
     }
     public static class Constants
     {
         public static List<ShowInfo> Shows = new List<ShowInfo>
         {
-            new ShowInfo { Id = "tt0903747", Name = "Breaking Bad", Image = "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" },
-            new ShowInfo { Id = "tt0944947", Name = "Game of Thrones", Image = "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" },
-            new ShowInfo { Id = "tt4574334", Name = "Stranger Things", Image = "https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg" },
-            new ShowInfo { Id = "tt7660850", Name = "Succession", Image = "https://m.media-amazon.com/images/M/MV5BODY5YjA3ZDgtM2EwYy00ZGVmLWFhNWItMTMxMWRkMWFiOTlkXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" },
-            new ShowInfo { Id = "tt1190634", Name = "The Boys", Image = "https://m.media-amazon.com/images/M/MV5BZWViOWJmNTctNjBjMC00ODA1LWIxZjItZTQxNGZiMDIxZTIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
-            new ShowInfo { Id = "tt10919420", Name = "Squid Game", Image = "https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg" },
-            new ShowInfo { Id = "tt10986410", Name = "Ted Lasso", Image = "https://m.media-amazon.com/images/M/MV5BOTE1MzIwOGItODAwNS00ODE4LWE3OTYtNTM4NThmODU2MGFiXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg" },
-            new ShowInfo { Id = "tt8111088", Name = "The Mandalorian", Image = "https://m.media-amazon.com/images/M/MV5BN2M5YWFjN2YtYzU2YS00NzBlLTgwZWUtYWQzNWFhNDkyYjg3XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg" },
-            new ShowInfo { Id = "tt4786824", Name = "The Crown", Image = "https://m.media-amazon.com/images/M/MV5BODYxYjZkODQtYTMyZS00NTMwLTkzNmItZDZjZDJjMmIzMjk0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
-            new ShowInfo { Id = "tt3581920", Name = "The Last of Us", Image = "https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_.jpg" }
+            new ShowInfo 
+            { 
+                Id = "tt0903747", 
+                Name = "Breaking Bad", 
+                Type = "TV Series",
+                Description = "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student in order to secure his family's future.",
+                ReleaseDate = "2008",
+                EndDate = "2013",
+                Image = "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt0944947", 
+                Name = "Game of Thrones",
+                Type = "TV Series",
+                Description = "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
+                ReleaseDate = "2011",
+                EndDate = "2019",
+                Image = "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt4574334", 
+                Name = "Stranger Things",
+                Type = "TV Series",
+                Description = "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
+                ReleaseDate = "2016",
+                EndDate = "2025",
+                Image = "https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt7660850", 
+                Name = "Succession",
+                Type = "TV Series",
+                Description = "The Roy family is known for controlling the biggest media and entertainment company in the world. However, their world changes when their father steps down from the company.",
+                ReleaseDate = "2018",
+                EndDate = "2023",
+                Image = "https://m.media-amazon.com/images/M/MV5BODY5YjA3ZDgtM2EwYy00ZGVmLWFhNWItMTMxMWRkMWFiOTlkXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt1190634", 
+                Name = "The Boys",
+                Type = "TV Series",
+                Description = "A group of vigilantes set out to take down corrupt superheroes who abuse their superpowers.",
+                ReleaseDate = "2019",
+                EndDate = null,
+                Image = "https://m.media-amazon.com/images/M/MV5BZWViOWJmNTctNjBjMC00ODA1LWIxZjItZTQxNGZiMDIxZTIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt10919420", 
+                Name = "Squid Game",
+                Type = "TV Series",
+                Description = "Hundreds of cash-strapped players accept a strange invitation to compete in children's games. Inside, a tempting prize awaits with deadly high stakes: a survival game that has a whopping 45.6 billion-won prize at stake.",
+                ReleaseDate = "2021",
+                EndDate = null,
+                Image = "https://m.media-amazon.com/images/M/MV5BYWE3MDVkN2EtNjQ5MS00ZDQ4LTliNzYtMjc2YWMzMDEwMTA3XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt10986410", 
+                Name = "Ted Lasso",
+                Type = "TV Series",
+                Description = "American college football coach Ted Lasso heads to London to manage AFC Richmond, a struggling English Premier League soccer team.",
+                ReleaseDate = "2020",
+                EndDate = "2023",
+                Image = "https://m.media-amazon.com/images/M/MV5BOTE1MzIwOGItODAwNS00ODE4LWE3OTYtNTM4NThmODU2MGFiXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt8111088", 
+                Name = "The Mandalorian",
+                Type = "TV Series",
+                Description = "The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.",
+                ReleaseDate = "2019",
+                EndDate = null,
+                Image = "https://m.media-amazon.com/images/M/MV5BN2M5YWFjN2YtYzU2YS00NzBlLTgwZWUtYWQzNWFhNDkyYjg3XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt4786824", 
+                Name = "The Crown",
+                Type = "TV Series",
+                Description = "Follows the political rivalries and romances of Queen Elizabeth II's reign and the events that shaped Britain for the second half of the 20th century.",
+                ReleaseDate = "2016",
+                EndDate = "2023",
+                Image = "https://m.media-amazon.com/images/M/MV5BODYxYjZkODQtYTMyZS00NTMwLTkzNmItZDZjZDJjMmIzMjk0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" 
+            },
+            new ShowInfo 
+            { 
+                Id = "tt3581920", 
+                Name = "The Last of Us",
+                Type = "TV Series",
+                Description = "After a global pandemic destroys civilization, a hardened survivor takes charge of a 14-year-old girl who may be humanity's last hope.",
+                ReleaseDate = "2023",
+                EndDate = null,
+                Image = "https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_.jpg" 
+            }
         };
 
         public static List<ShowInfo> NetflixTopShows = new List<ShowInfo>
