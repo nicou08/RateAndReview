@@ -9,7 +9,7 @@
             <div class="slider-content">
                 @foreach (var show in ShowsToDisplay)
                 {
-                    <NavLink href="@("/show/" + @show.Id)">
+                    <NavLink class="nav-link" href="@("/show/" + @show.Id)">
                         <div class="slider-item">
                             <div class="sliderImageContainer">
                                 <img src="@show.Image" alt="@show.Name image" />

@@ -245,6 +245,15 @@
     height: auto;
 }
 
+.footer {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    background-color: #141414;
+    color: white;
+}
+
 @media (max-width: 640px) {
     .pageContainer {
         width: 100%;

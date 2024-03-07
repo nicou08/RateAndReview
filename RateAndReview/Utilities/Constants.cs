@@ -116,6 +116,30 @@
             }
         };
 
+        public static List<ShowInfo> TopMovies = new List<ShowInfo>
+        {
+            new ShowInfo { Id = "tt1630029", Name = "Avatar: The Way of Water", Image = "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_.jpg"},
+            new ShowInfo { Id = "tt15398776", Name = "Oppenheimer", Image = "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_.jpg"},
+            new ShowInfo { Id = "tt0816692", Name = "Interstellar", Image = "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"},
+            new ShowInfo { Id = "tt0381707", Name = "White Chicks", Image = "https://m.media-amazon.com/images/M/MV5BMTY3OTg2OTM3OV5BMl5BanBnXkFtZTYwNzY5OTA3._V1_.jpg"},
+            new ShowInfo { Id = "tt15239678", Name = "Dune: Part Two", Image = "https://m.media-amazon.com/images/M/MV5BN2QyZGU4ZDctOWMzMy00NTc5LThlOGQtODhmNDI1NmY5YzAwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg"},
+            new ShowInfo { Id = "tt1745960", Name = "Top Gun: Maverick", Image = "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg"},
+            new ShowInfo { Id = "tt0298148", Name = "Shrek 2", Image = "https://m.media-amazon.com/images/M/MV5BMDJhMGRjN2QtNDUxYy00NGM3LThjNGQtMmZiZTRhNjM4YzUxL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"},
+            new ShowInfo { Id = "tt0468569", Name = "The Dark Knight", Image = "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg"},
+            new ShowInfo { Id = "tt1411697", Name = "The Hangover Part II", Image = "https://m.media-amazon.com/images/M/MV5BMTM2MTM4MzY2OV5BMl5BanBnXkFtZTcwNjQ3NzI4NA@@._V1_.jpg"},
+            new ShowInfo { Id = "tt2582802", Name = "Whiplash", Image = "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"},
+            new ShowInfo { Id = "tt2322441", Name = "Fifty Shades of Grey", Image = "https://m.media-amazon.com/images/M/MV5BMjE1MTM4NDAzOF5BMl5BanBnXkFtZTgwNTMwNjI0MzE@._V1_.jpg"},
+            new ShowInfo { Id = "tt0107290", Name = "Jurassic Park", Image = "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_.jpg"},
+            new ShowInfo { Id = "tt9362722", Name = "Spider-Man: Across the Spider-Verse", Image = "https://m.media-amazon.com/images/M/MV5BMzI0NmVkMjEtYmY4MS00ZDMxLTlkZmEtMzU4MDQxYTMzMjU2XkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_.jpg"},
+            new ShowInfo { Id = "tt6751668", Name = "Parasite", Image = "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg"},
+            new ShowInfo { Id = "tt0463985", Name = "The Fast and the Furious: Tokyo Drift", Image = "https://m.media-amazon.com/images/M/MV5BMTQ2NTMxODEyNV5BMl5BanBnXkFtZTcwMDgxMjA0MQ@@._V1_.jpg"},
+            new ShowInfo { Id = "tt8579674", Name = "1917", Image = "https://m.media-amazon.com/images/M/MV5BOTdmNTFjNDEtNzg0My00ZjkxLTg1ZDAtZTdkMDc2ZmFiNWQ1XkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_.jpg"},
+            new ShowInfo { Id = "tt1074638", Name = "Skyfall", Image = "https://m.media-amazon.com/images/M/MV5BMWZiNjE2OWItMTkwNy00ZWQzLWI0NTgtMWE0NjNiYTljN2Q1XkEyXkFqcGdeQXVyNzAwMjYxMzA@._V1_.jpg"},
+            new ShowInfo { Id = "tt0470752", Name = "Ex Machina", Image = "https://m.media-amazon.com/images/M/MV5BMTUxNzc0OTIxMV5BMl5BanBnXkFtZTgwNDI3NzU2NDE@._V1_.jpg"},
+            new ShowInfo { Id = "tt2194499", Name = "About Time", Image = "https://m.media-amazon.com/images/M/MV5BMTA1ODUzMDA3NzFeQTJeQWpwZ15BbWU3MDgxMTYxNTk@._V1_.jpg"},
+            new ShowInfo { Id = "tt0405159", Name = "Million Dollar Baby", Image = "https://m.media-amazon.com/images/M/MV5BMTkxNzA1NDQxOV5BMl5BanBnXkFtZTcwNTkyMTIzMw@@._V1_.jpg"},
+        };
+
         public static List<ShowInfo> NetflixTopShows = new List<ShowInfo>
         {
             new ShowInfo { Id = "tt4574334", Name="Stranger Things", Image= "https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg" },
@@ -166,44 +190,50 @@
 
         public static List<ShowInfo> MaxTopShows = new List<ShowInfo>
         {
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" }
+            new ShowInfo { Id = "tt7660850", Name="Succession", Image= "https://m.media-amazon.com/images/M/MV5BODY5YjA3ZDgtM2EwYy00ZGVmLWFhNWItMTMxMWRkMWFiOTlkXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" },
+            new ShowInfo { Id = "tt11198330", Name="House of the Dragon", Image= "https://m.media-amazon.com/images/M/MV5BMjk2NjgzMTEtYWViZS00NTMyLWFjMzctODczYmQzNzk2NjIwXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" },
+            new ShowInfo { Id = "tt2356777", Name="True Detective", Image= "https://m.media-amazon.com/images/M/MV5BMTUwMGM2ZmYtZGEyZC00OWQyLWI2Y2QtMTdjYzMxZGJmNjhjXkEyXkFqcGdeQXVyNjU2ODM5MjU@._V1_.jpg" },
+            new ShowInfo { Id = "tt8772296", Name="Euphoria", Image= "https://m.media-amazon.com/images/M/MV5BMDMzZDkyNzEtYTY5Ni00NzlhLWI4MzUtY2UzNjNmMjI1YzIzXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt3581920", Name="The Last of Us", Image= "https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt5348176", Name="Barry", Image= "https://m.media-amazon.com/images/M/MV5BMmY1NTk5N2QtYWQyOS00NjhiLWFhZmYtYWZmZGFlMjEzY2E2XkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" },
+            new ShowInfo { Id = "tt0306414", Name="The Wire", Image= "https://m.media-amazon.com/images/M/MV5BNTllYzFhMjAtZjExNS00MjM4LWE5YmMtOGFiZGRlOTU5YzJiXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg" },
+            new ShowInfo { Id = "tt7671070", Name="Industry", Image= "https://m.media-amazon.com/images/M/MV5BOTQ5ZjllMDgtZWQxZS00YjcwLWEwOTAtMGUxZTNhMGMzMGQzXkEyXkFqcGdeQXVyNjEwNTM2Mzc@._V1_.jpg" },
+            new ShowInfo { Id = "tt13406094", Name="The White Lotus", Image= "https://m.media-amazon.com/images/M/MV5BNTcyMDdhNmUtM2JmOS00MWY4LThjZDMtMWRiZmI3ZDg4OWJiXkEyXkFqcGdeQXVyMTU2Mjg2NjE2._V1_.jpg" },
+            new ShowInfo { Id = "tt10155688", Name="Mare of Easttown", Image= "https://m.media-amazon.com/images/M/MV5BYjIyOGU1NzAtODZmYi00NGMzLWJiMjItNGNjNTFjOTM5ZDJhXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" },
+            new ShowInfo { Id = "tt3920596", Name="Big Little Lies", Image= "https://m.media-amazon.com/images/M/MV5BZmNjYzdjN2ItOTBlNy00Mjc0LWE4YmMtYTQ4ZjQzNTMyNDc4XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt0944947", Name="Game of Thrones", Image= "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" },
+            new ShowInfo { Id = "tt7049682", Name="Watchmen", Image= "https://m.media-amazon.com/images/M/MV5BYjhhZDE3NjgtMjkzNC00NzI3LWJhOTItMWQ5ZjljODA5NWNkXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" },
+            new ShowInfo { Id = "tt0141842", Name="The Sopranos", Image= "https://m.media-amazon.com/images/M/MV5BZGJjYzhjYTYtMDBjYy00OWU1LTg5OTYtNmYwOTZmZjE3ZDdhXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt7366338", Name="Chernobyl", Image= "https://m.media-amazon.com/images/M/MV5BNTdkN2QwMDItMDVhNS00ZjFiLWEzNTctMzY5ODQzYWNkMDllXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" },
+            new ShowInfo { Id = "tt2887954", Name="Tokyo Vice", Image= "https://m.media-amazon.com/images/M/MV5BYWVhN2Q2MDEtMzIzYS00M2EwLTlmZDItMzk5YTUzZWE0MjkwXkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg" },
+            new ShowInfo { Id = "tt11204260", Name="I May Destroy You", Image= "https://m.media-amazon.com/images/M/MV5BMmI0Mjc4ZTgtZmU0My00ODliLWE0MzYtYzBiODMxZWJkZmE4XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt0475784", Name="Westworld", Image= "https://m.media-amazon.com/images/M/MV5BMTRmYzNmOTctZjMwOS00ODZlLWJiZGQtNDg5NDY5NjE3MTczXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt14586350", Name="Love & Death", Image= "https://m.media-amazon.com/images/M/MV5BOGRhYmU2YWEtNThlMi00ZmQ4LWFiYTQtYjM0NDM3YTRlZmUxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" },
+            new ShowInfo { Id = "tt10814438", Name="Betty", Image= "https://m.media-amazon.com/images/M/MV5BYmY3Y2UwOTgtMDZiZC00ODI3LWFmZTQtNWVlZDVkYTE4N2NkXkEyXkFqcGdeQXVyMTAyMjQ3NzQ1._V1_.jpg" },
         };
 
-        public static List<ShowInfo> PrimeTopShows = new List<ShowInfo>
+        public static List<ShowInfo> DramaMovies = new List<ShowInfo>
         {
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" }
-        };
-
-        public static List<ShowInfo> AppleTopShows = new List<ShowInfo>
-        {
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" },
-            new ShowInfo { Id = "tt7335184", Name="You", Image= "" }
+            new ShowInfo { Id = "tt7286456", Name="Joker", Image= "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" },
+            new ShowInfo { Id = "tt5013056", Name="Dunkirk", Image= "https://m.media-amazon.com/images/M/MV5BN2YyZjQ0NTEtNzU5MS00NGZkLTg0MTEtYzJmMWY3MWRhZjM2XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg" },
+            new ShowInfo { Id = "tt2543164", Name="Arrival", Image= "https://m.media-amazon.com/images/M/MV5BMTExMzU0ODcxNDheQTJeQWpwZ15BbWU4MDE1OTI4MzAy._V1_.jpg" },
+            new ShowInfo { Id = "tt7131622", Name="Once Upon a Time in... Hollywood", Image= "https://m.media-amazon.com/images/M/MV5BOTg4ZTNkZmUtMzNlZi00YmFjLTk1MmUtNWQwNTM0YjcyNTNkXkEyXkFqcGdeQXVyNjg2NjQwMDQ@._V1_.jpg" },
+            new ShowInfo { Id = "tt0993846", Name="The Wolf of Wall Street", Image= "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_.jpg" },
+            new ShowInfo { Id = "tt3704428", Name="Elvis", Image= "https://m.media-amazon.com/images/M/MV5BYzMzNTJjYmMtZTkxNS00MjI4LWI3YmQtOTQ4MDZjZDJlZjQyXkEyXkFqcGdeQXVyNjc0NzQzNTM@._V1_.jpg" },
+            new ShowInfo { Id = "tt1302006", Name="The Irishman", Image= "https://m.media-amazon.com/images/M/MV5BMGUyM2ZiZmUtMWY0OC00NTQ4LThkOGUtNjY2NjkzMDJiMWMwXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg" },
+            new ShowInfo { Id = "tt0405159", Name = "Million Dollar Baby", Image = "https://m.media-amazon.com/images/M/MV5BMTkxNzA1NDQxOV5BMl5BanBnXkFtZTcwNTkyMTIzMw@@._V1_.jpg"},
+            new ShowInfo { Id = "tt1291584", Name="Warrior", Image= "https://m.media-amazon.com/images/M/MV5BMTk4ODk5MTMyNV5BMl5BanBnXkFtZTcwMDMyNTg0Ng@@._V1_.jpg" },
+            new ShowInfo { Id = "tt13880104", Name="Happening", Image= "https://m.media-amazon.com/images/M/MV5BZDU4NTE3YTQtMzczMC00YzRkLWI5MjItNGE3NjQ0NTY4MzExXkEyXkFqcGdeQXVyODA0MjgyNzM@._V1_.jpg" },
+            new ShowInfo { Id = "tt1517451", Name="A Star Is Born", Image= "https://m.media-amazon.com/images/M/MV5BNmE5ZmE3OGItNTdlNC00YmMxLWEzNjctYzAwOGQ5ODg0OTI0XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" },
+            new ShowInfo { Id = "tt0068646", Name="The Godfather", Image= "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            new ShowInfo { Id = "tt2179136", Name="American Sniper", Image= "https://m.media-amazon.com/images/M/MV5BMTkxNzI3ODI4Nl5BMl5BanBnXkFtZTgwMjkwMjY4MjE@._V1_.jpg" },
+            new ShowInfo { Id = "tt3741834", Name="Lion", Image= "https://m.media-amazon.com/images/M/MV5BMjA3NjkzNjg2MF5BMl5BanBnXkFtZTgwMDkyMzgzMDI@._V1_.jpg" },
+            new ShowInfo { Id = "tt7653254", Name="Marriage Story", Image= "https://m.media-amazon.com/images/M/MV5BZGVmY2RjNDgtMTc3Yy00YmY0LTgwODItYzBjNWJhNTRlYjdkXkEyXkFqcGdeQXVyMjM4NTM5NDY@._V1_.jpg" },
+            new ShowInfo { Id = "tt0120338", Name="Titanic", Image= "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg" },
+            new ShowInfo { Id = "tt0172495", Name="Gladiator", Image= "https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg" },
+            new ShowInfo { Id = "tt0414387", Name="Pride & Prejudice", Image= "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg" },
+            new ShowInfo { Id = "tt10731256", Name="Don't Worry Darling", Image= "https://m.media-amazon.com/images/M/MV5BZWUyZmJiMTgtZWQ5ZS00ZmRjLTg0NWItNmQxNmM5ZjQ2MmFiXkEyXkFqcGdeQXVyMTUzMTQ0NzQz._V1_.jpg" },
+            new ShowInfo { Id = "tt1285016", Name="The Social Network", Image= "https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" },
         };
     }
 }

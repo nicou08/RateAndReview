@@ -125,43 +125,45 @@
             {
                 @foreach (var show in Most10RatedShows)
                 {
-                    <div class="topMediaItem">
-                        <div  class="topMediaItemImageContainer">
-                            <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
-                        </div>
-                        <div class="topMediaIteminfoContainer">
-                            <div class="topMediaItemInfo">
-                                <div class="topMediaItemTitle">
-                                    @show.mediaTitle 
+                    <NavLink class="nav-link" href="@("/show/" + @show.imdbID)">
+                        <div class="topMediaItem">
+                            <div  class="topMediaItemImageContainer">
+                                <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
+                            </div>
+                            <div class="topMediaIteminfoContainer">
+                                <div class="topMediaItemInfo">
+                                    <div class="topMediaItemTitle">
+                                        @show.mediaTitle 
+                                    </div>
+                                    <div class="topMediaItemDate">
+                                        @show.releaseDate
+                                        -
+                                        @if (show.endDate != null)
+                                        {
+                                            @show.endDate
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                &nbsp;&#x2022;
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
-                                <div class="topMediaItemDate">
-                                    @show.releaseDate
-                                    -
-                                    @if (show.endDate != null)
-                                    {
-                                        @show.endDate
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            &nbsp;&#x2022;
-                                        </div>
-                                    }
+                                <div class="topMediaItemRating">
+                                    <div class="topMediaItemRatingStar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        @show.rating.ToString("0.0")
+                                    </div>
+                                    <div class="topMediaItemNumRating">
+                                        @show.numberOfReviews user ratings
+                                    </div>
                                 </div>
                             </div>
-                            <div class="topMediaItemRating">
-                                <div class="topMediaItemRatingStar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
-                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    @show.rating.ToString("0.0")
-                                </div>
-                                <div class="topMediaItemNumRating">
-                                    @show.numberOfReviews user ratings
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    </NavLink>
                 }
             }
             
@@ -174,46 +176,48 @@
 
             @if (Most10RatedShows != null)
             {
-                @foreach (var show in Most10RatedShows)
+                @foreach (var show in Most10RatedMovies)
                 {
-                    <div class="topMediaItem">
-                        <div class="topMediaItemImageContainer">
-                            <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
-                        </div>
-                        <div class="topMediaIteminfoContainer">
-                            <div class="topMediaItemInfo">
-                                <div class="topMediaItemTitle">
-                                    @show.mediaTitle
-                                </div>
-                                <div class="topMediaItemDate">
-                                    @show.releaseDate
-                                    -
-                                    @if (show.endDate != null)
-                                    {
-                                        @show.endDate
-                                    }
-                                    else
-                                    {
-                                        <div>
-                                            &nbsp;&#x2022;
-                                        </div>
-                                    }
-                                </div>
+                    <NavLink class="nav-link" href="@("/show/" + @show.imdbID)">
+                        <div class="topMediaItem">
+                            <div class="topMediaItemImageContainer">
+                                <img src="@show.mediaPoster" alt="@show.mediaTitle image" class="topMediaItemImage" />
                             </div>
-                            <div class="topMediaItemRating">
-                                <div class="topMediaItemRatingStar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
-                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                    </svg>
-                                    @show.rating.ToString("0.0")
+                            <div class="topMediaIteminfoContainer">
+                                <div class="topMediaItemInfo">
+                                    <div class="topMediaItemTitle">
+                                        @show.mediaTitle
+                                    </div>
+                                    <div class="topMediaItemDate">
+                                        @show.releaseDate
+                                        -
+                                        @if (show.endDate != null)
+                                        {
+                                            @show.endDate
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                &nbsp;&#x2022;
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
-                                <div class="topMediaItemNumRating">
-                                    @show.numberOfReviews user ratings
-                                </div>
+                                <div class="topMediaItemRating">
+                                    <div class="topMediaItemRatingStar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f2c84b" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin-right: 10px;">
+                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                        </svg>
+                                        @show.rating.ToString("0.0")
+                                    </div>
+                                    <div class="topMediaItemNumRating">
+                                        @show.numberOfReviews user ratings
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </NavLink>
                 }
             }
         </div>
@@ -237,7 +241,17 @@
     <div class="inBetween1">
     </div>
 
-    <ShowCategory CategoryTitle="Netflix Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="1"/>
+    <ShowCategory CategoryTitle="Most Popular Movies" ShowsToDisplay=Constants.TopMovies SliderID="6" />
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Drama Movies" ShowsToDisplay=Constants.DramaMovies SliderID="5" />
+
+    <div class="inBetween2">
+    </div>
+
+    <ShowCategory CategoryTitle="Netflix Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="1" />
 
     <div class="inBetween2">
     </div>
@@ -247,24 +261,24 @@
     <div class="inBetween2">
     </div>
 
-    <ShowCategory CategoryTitle="Max Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="3"/>
+    <ShowCategory CategoryTitle="Max Most Popular Shows" ShowsToDisplay=Constants.MaxTopShows SliderID="3" />
 
     <div class="inBetween2">
     </div>
 
-    <ShowCategory CategoryTitle="Prime Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="4" />
-
     <div class="inBetween2">
     </div>
 
-    <ShowCategory CategoryTitle="Apple TV + Most Popular Shows" ShowsToDisplay=Constants.NetflixTopShows SliderID="5" />
-
+    <div class="inBetween2">
+    </div>
+    <div class="inBetween2">
+    </div>
     <div class="inBetween2">
     </div>
 
-    <NavLink class="nav-link" href="auth">
-        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
-    </NavLink>
+    <div class="footer">
+        © nicou08 on Github
+    </div>
 
 </div>
 
@@ -280,7 +294,7 @@
     {
         Most10RatedShows = await MongoDBService.GetTop5ShowsAsync();
 
-        Most10RatedMovies = await MongoDBService.GetTop10MoviesAsync();
+        Most10RatedMovies = await MongoDBService.GetTop5MoviesAsync();
 
         Console.WriteLine("Most10RatedShows: {0}" + Most10RatedShows.Count);
 

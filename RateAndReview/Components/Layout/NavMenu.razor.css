@@ -18,6 +18,7 @@
     overflow: visible;
     padding-left: 40px;
     padding-right: 40px;
+    width: 100%;
 }
 
 .logo {
@@ -276,9 +277,13 @@
     display: none;
 }
 
-.navbar-toggler:checked ~ .nav-scrollable {
+/*.navbar-toggler:checked ~ .nav-scrollable {
     display: block;
-}
+}*/
+
+/*.navbar-toggler:checked ~ .infoContainer {
+    display: block;
+}*/
 
 @media (min-width: 641px) {
     .navbar-toggler {
@@ -300,8 +305,14 @@
     }
 
     .headerContainer2 {
-        width: 92.857%;
+        /*width: 92.857%; */   
+        width: 100%;
     }
+
+    /*.infoContainer {
+        display: block;
+        display: flex;
+    }*/
 }
 
 @media (max-width: 900px) {

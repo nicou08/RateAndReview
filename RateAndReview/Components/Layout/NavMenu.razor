@@ -21,7 +21,7 @@
             </div>
         </div>
     </NavLink>
-    
+
     <div class="infoContainer">
 
         <div class="searchBox">
@@ -68,24 +68,6 @@
                 </div>
             }
         </div>
-
-        @* <div class="searchBox">
-            <div class="searchBoxInner">
-                <InputText type="text" @onkeyup="CheckForEnter" @bind-Value="searchQuery" placeholder="Search" style="width: 100%; padding-left: 20px; padding-right: 20px; padding-top: 8px; padding-bottom: 8px; border-radius: 50px;" />
-                @if (showSearchResults)
-                {
-                    <div class="searchResultsContainer">
-                        Hello search results
-                        <button @onclick="ToggleSearchResults">Close</button>
-                    </div>
-                }
-            </div> 
-        </div> *@
-
-        @* <EditForm FormName="searchForm" Model="@searchModel" OnValidSubmit="@Search">
-            <InputText id="searchBox" class="searchBox" @bind-Value="@searchQuery" placeholder="Search" />
-            <ValidationMessage For="@(() => searchModel.SearchQuery)" /> 
-        </EditForm> *@
 
         <AuthorizeView>
             <Authorized Context="authContext">
@@ -195,7 +177,7 @@
 
         if (!String.IsNullOrWhiteSpace(searchQuery))
         {
-            var searchResults = await RapidApiService.GetSearchByAka(searchQuery);
+            var searchResults = await RapidApiService.GetSearchByAka(searchQuery); 
 
             //Console.WriteLine("Search Results:");
             //Console.WriteLine(searchResults);
@@ -218,7 +200,6 @@
                         if (result["titleText"]["text"].ToString() == "Breaking Bad")
                         {
                             ImgUrl = "https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg";
-
                         }
                         else
                         {

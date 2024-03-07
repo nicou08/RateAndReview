@@ -226,7 +226,7 @@
                         <div class="reviewContainer2">
                             <div class="reviewInfo">
                                 <div class="reviewAuthor">
-                                    REVIEW BY: @review.author
+                                    REVIEW BY: @review.author.Substring(0, review.author.IndexOf('@'))
                                 </div>
                                 <div class="reviewDate">
                                     @review.date.ToString("MMMM dd, yyyy")
