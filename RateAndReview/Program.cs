@@ -30,8 +30,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-var connectionString2 = builder.Configuration.GetSection("MongoDbSettings")["ConnectionString"];
-if (connectionString2 == null)
+//var connectionString2 = builder.Configuration.GetSection("MongoDbSettings")["ConnectionString"];
+var connectionString2 = builder.Configuration.GetConnectionString("MongoDBConnectionString");
+if (string.IsNullOrEmpty(connectionString2))
 {
     throw new InvalidOperationException("MongoDB connection string not configured correctly.");
 }
